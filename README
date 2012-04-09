@@ -1,0 +1,31 @@
+####################################
+####################################
+######### Projeto Macgyver #########
+####################################
+####################################
+
+1º Primeiro avanço que pude fazer:
+   Desenvolvi o arquivo auth.c que será responsável
+pelo registro dos usuários no DB, alem da recuperação
+dos mesmos.
+   No arquivo, para efeito de teste, aquele que fizer 
+o download, deve estar ciente que, o caminho onde
+ficam salvos as informações do usuarios deve ser 
+alterado no fonte, ja que, ainda em fase de testes,
+esta pouco portável, será nescessaria a alteração
+das constantes: END e ENDC nos #defines do smallcode.
+
+Espero que gostem...
+
+Agradecimento à Marcelo e Ronaldo...
+
+
+by User_X A.K.A Victor V. Flores.
+
+
+P.S: Lista Simplesmente encadeada, estabeleço um ponteiro
+para o inicio da lista e outro para o fim.
+Percorro a lista com um temporário de inicio a fim.
+O programa registra toda a lista nos caminhos especificados
+em: "#define END [...]" e "#define ENDC [...]", ambos, devem
+ser alterados para se adequar a seu sistema.
