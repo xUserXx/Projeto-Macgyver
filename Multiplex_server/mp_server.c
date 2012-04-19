@@ -15,7 +15,7 @@
 #include <sys/time.h>
 #include <errno.h>
 
-#include "color_rset.h"
+#include "../headers/color_rset.h"
 
 #define max(a,b)	((a) > (b) ? (a) : (b))
 
