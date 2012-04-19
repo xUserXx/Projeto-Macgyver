@@ -23,6 +23,7 @@ int main(int argc, char ** argv){
     socklen_t sin_size;
     
     char user[16];
+    char passwd[16];
     
     int port = 54321;
     
@@ -56,11 +57,14 @@ int main(int argc, char ** argv){
             fatal("accepting connection from client");        
         }   
         printf("\n-==[!!] Got connection from addr: %s port: %d [!!]==-\n", inet_ntoa(client.sin_addr), ntohs(client.sin_port));
-        send(new_sockfd, "\nUser: ", 7,0);
+        send(new_sockfd, "\nUser: ", 7, 0);
         recv(new_sockfd, user, sizeof(user), 0);
         str_format(user);
+        send(new_sockfd, "Password:", sizeof(passwd), 0);
+        recv(new_sockfd, passwd, sizeof(passwd), 0);
+        str_format(passwd);
         printf("\n[DEBUG] || user received: %s\n", user);
-        break;
+        printf("\n[DEBUG] || passwd received: %s\n", passwd);
         close(2); close(1); close(0);
         dup2(new_sockfd, 2);
         dup2(new_sockfd, 1);

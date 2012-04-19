@@ -29,3 +29,20 @@ Percorro a lista com um temporário de inicio a fim.
 O programa registra toda a lista nos caminhos especificados
 em: "#define END [...]" e "#define ENDC [...]", ambos, devem
 ser alterados para se adequar a seu sistema.
+
+/-----------------------------------------------------------------------/
+
+Adicinado um servidor utilizando Select(), função para multiplex,
+que é, basicamente, sinalização de kernel, como explicado nas 
+reuniões. Será importante sabermos usa-la para manipular I/O dos
+File Descriptor e dos Socket Descriptor que usarmos no servidor
+ao mesmo tempo.
+
+Foi adicionado ao repositório também, um novo header: color_rset.h
+será utilizado para dar aparência ao terminal de acesso, colorir
+colocar fonte como BOLD ou Italic ou mesmo fazer com que fique
+Piscando, entre outras funcionalidades.
+
+Espero que gostem.
+
+By UserX A.K.A Victor Vigel Flores
