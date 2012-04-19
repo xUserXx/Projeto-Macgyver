@@ -1,5 +1,6 @@
-//      exceptions.h :: By UserX
-
+//*********************************
+//      exceptions.h :: By UserX ::
+//*********************************
 // Uma função para exibir msg de erro e então sair.
 void fatal(char *message) {
 		char error_message[100];

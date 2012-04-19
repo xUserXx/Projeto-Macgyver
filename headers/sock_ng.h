@@ -1,6 +1,13 @@
+//**************************************************************
+// File: sock_ng.h {ng seems like new generation} :: By UserX ::
+//**************************************************************
+
+
 #define BACKLOG 5
 #define TRUE    1
 #define FALSE   0
+
+
 int sock_create(int * sockfd, struct sockaddr_in * host, unsigned short int port){
   *sockfd = socket(PF_INET, SOCK_STREAM, 0);
    int yes = 1;

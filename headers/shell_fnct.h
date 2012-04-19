@@ -1,9 +1,6 @@
-/* 
- * File:   shell_fnct.h
- * Author: flynn
- *
- * Created on October 20, 2011, 7:48 AM
- */
+//**********************************
+// File:   shell_fnct :: By UserX ::
+//**********************************
 
 
 extern void clear(void)
