@@ -1,6 +1,6 @@
-//*************************
- dump_io.h file by UserX ::
-//*************************
+//***************************
+// dump_io.h file by UserX ::
+//***************************
 
 /* Função dump_line
 *  This function reads and dumps any remaining characters on the current input
@@ -16,8 +16,7 @@ void dump_line( FILE * fp ){
 }
 
 void str_format( char *str ){
-	int i  = strlen(str) - 1 ;
+	int i  = strlen(str);
 
 	str[i] = '\0';
-	
 }

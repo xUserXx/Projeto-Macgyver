@@ -15,13 +15,15 @@
 #include <sys/time.h>
 #include <errno.h>
 
-#include "../headers/color_rset.h"
+#include "headers/color_rset.h"
+#include "headers/dump_io.h"
 
 #define max(a,b)	((a) > (b) ? (a) : (b))
 
 #define TRUE	1
 #define FALSE	0
 #define BACKLOG	5
+#define MAXLINE 1024
 
 int main(int argc, char ** argv){
 	int sockfd;		// socket declarations ::
@@ -33,11 +35,10 @@ int main(int argc, char ** argv){
 	int send_l;
 	int port;
 
-	char buff_r[256];
-	char buff_s[256];
+	char buff_r[MAXLINE];
+	char buff_s[MAXLINE];
 
 	fd_set rset;
-	fd_set allset;
 
 	socklen_t sin_size;
 
@@ -101,14 +102,13 @@ int main(int argc, char ** argv){
 					perror("in recv()");
 					continue;
 				}
-				printf("\n%d\n", recv_l);
 				if(recv_l == 0){
-//					printf(T_RED);
-					printf("\n\t%s-==[!!] Connection was closed from client [!!]==-\n", T_RED);
+					printf("\n\t%s-==[!!] Connection was closed from client [!!]==-%s\n", T_RED, T_WHITE);
 					break;
 				}
-				buff_r[(strlen(buff_r)-1)] = '\0';
+				str_format(buff_r);
 				printf("%s\n", buff_r);
+				send(nsockfd, buff_r, strlen(buff_r), 0);
 				memset(buff_r, '\0', sizeof(buff_r));
 
 			}
