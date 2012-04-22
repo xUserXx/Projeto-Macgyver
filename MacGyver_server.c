@@ -1,3 +1,8 @@
+//*********************************************************
+//	Socket server with select function for multiplex ::
+//	date: 22/04/2012	By UserX		 ::
+//*********************************************************
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

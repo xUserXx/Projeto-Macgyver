@@ -1,3 +1,12 @@
+//**********************************************************************
+//	Este será o cliente Macgyver que iremos usar 		      ::
+// Acho que esta apropriado, por fazer o controle do I/O e tambem por ::
+// manter a comunicação com o servidor, puxar o shell, que optei pelo ::
+// bash								      ::
+// 	date: 22/04/2012 By UserX				      ::
+//**********************************************************************
+
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
