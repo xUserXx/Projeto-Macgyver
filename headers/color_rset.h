@@ -3,6 +3,7 @@
 //*************************************************
 
 // Text Color ::
+#define 	T_NULL	 "\033[0m"
 #define 	T_RED	 "\033[1;31m"
 #define		T_GREEN	 "\033[1;32m"
 #define		T_YELL	 "\033[1;33m"
