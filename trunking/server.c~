@@ -43,6 +43,7 @@ int main(int argc, char ** argv){
 	while(TRUE){
 		Accept(&nsockfd, &sockfd, &client, &sin_size);
 		send(nsockfd, "\nWELCOME\n", 10, 0);
+		close(nsockfd);
 	}
 	
 }

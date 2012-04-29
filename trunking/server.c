@@ -37,7 +37,6 @@ int main(int argc, char ** argv){
 	}
 	port = atoi(argv[1]);
 
-	//sock_create(int * sockfd, struct sockaddr_in * host, unsigned short int port)
 	startList(&f);
 	sin_size = Socket(&sockfd, &host, port);
 	while(TRUE){
