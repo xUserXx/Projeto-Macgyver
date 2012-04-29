@@ -108,7 +108,7 @@ void escritor(sFila * f, FILE * fd){
     temp = temp->prox;
   }
   cont = ant->id;
-  if(fwrite(&cont, sizeof(ant), 1, fd)!= 1){
+  if(fwrite(&cont, sizeof(int), 1, fd)!= 1){
     fatal("writing on the cont file");
   }
   fclose(fd);

@@ -1,6 +1,8 @@
 //*************************************************
 // Terminal color and curses definition by UserX ::
 //*************************************************
+#ifndef COLOR_RSET_H
+#define COLOR_RSET_H
 
 // Text Color ::
 #define 	T_NULL	 "\033[0m"
@@ -31,4 +33,4 @@
 #define 	REVERS		"\033[1;07m"
 #define		OBFUSCATE	"\033[1;08m"
 
-
+#endif

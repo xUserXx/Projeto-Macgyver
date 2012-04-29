@@ -2,6 +2,9 @@
 // File:   shell_fnct :: By UserX ::
 //**********************************
 
+#include <stdlib.h>
+#ifndef SHELL_FNCT_H
+#define SHELL_FNCT_H
 
 extern void clear(void)
 {
@@ -43,7 +46,7 @@ extern void setfont(int bg, int fg)
         printf("\33[%d;%d;%dm",y,x,z);
 }
 
-void movexy(int x, int y)
+void move(int x, int y)
 {
 	printf("\33[%d;%df",y,x);
 } 
@@ -52,3 +55,5 @@ void wait(void){
 	printf("\n");
 	system("read b");
 }
+
+#endif

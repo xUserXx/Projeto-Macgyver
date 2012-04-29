@@ -2,6 +2,10 @@
 //      exceptions.h :: By UserX ::
 //*********************************
 
+#include <string.h>
+#ifndef EXCEPTIONS_H
+#define EXCEPTIONS_H
+
 // Uma função para exibir msg de erro e então sair.
 void fatal(char *message) {
 		char error_message[100];
@@ -49,3 +53,5 @@ void dump(const unsigned char *data_buffer, const unsigned int length){
     }
   }
 }
+
+#endif
