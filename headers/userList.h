@@ -210,58 +210,12 @@ void listFree(sFila* f) {
 }
 
 // imprime o menu :: 
-int menu(sFila * f, int op, char * user, char * passwd){
+int login(sFila * f, int op, char * user, char * passwd){
     FILE * fd;
-    int option;
-    char id[MAX];
     unsigned short int whiler = 0;
-	
-	if(op == 1){
-		recover(f, fd);
-		return loginVerify(f, user, passwd);
-	}
 
-    while(whiler == 0){
-	    clear();
-    	printf("-=======================-\n");
-    	printf("-==[ User Menu Table ]==-\n");
-    	printf("-=======================-\n");
-//    	printf("-==[ 1 - add user    ]==-\n");
-    	printf("-==[ 2 - search user ]==-\n");
-//    	printf("-==[ 3 - Save to DB  ]==-\n");
-    	printf("-==[ 4 - recover DB  ]==-\n");
-		printf("-==[ 5 - quit        ]==-\n");
-    	printf("-=======================-\n");
-    	printf("-==[ Option ]==-==[ ]==-\n");
-    	move(20,10);
-    	scanf("%d", &option);
-        switch(option){
-            case 1:{
-                registerToList(f);
-                break;
-            }case 2:{
-                printf("\n");
-                printf("\t-==[Type the ID name]==-\n");
-                printf("\t-==[ID:             ]==-\n");
-                move(16, 13);
-				dump_line(stdin);
-                fgets(id, sizeof(id), stdin);
-				str_format(id);
-                search(f, id);
-                wait();
-                break;
-            }case 3:{
-                escritor(f, fd);
-                break;
-            }case 4:{
-                recover(f, fd);
-                break;
-            }case 5:{
-                whiler = 1;
-             break;
-            }default: whiler = 1; break;
-        }
-    }
+	recover(f, fd);
+	return loginVerify(f, user, passwd);
 }
 
 #endif

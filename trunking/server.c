@@ -24,7 +24,7 @@ int main(int argc, char ** argv){
 
 	int yes = 1;
 	int id;
-	int T;
+	int Tester;
 
 	unsigned short int port;
 	
@@ -49,8 +49,8 @@ int main(int argc, char ** argv){
 		recv(nsockfd, passwd, sizeof(passwd), 0);
 		str_format(username);
 		str_format(passwd);
-		T = menu(&f, TRUE, username, passwd);
-		if(T == FALSE){
+		T = login(&f, TRUE, username, passwd);
+		if(Tester == FALSE){
 			//fprintf(stderr,"\nUser Doesn't exist\n");
 			send(nsockfd, "\nUser Doesn't exist\n", 20, 0);
 			close(nsockfd);
