@@ -226,11 +226,9 @@ int menu(sFila * f, int op, char * user, char * passwd){
     	printf("-=======================-\n");
     	printf("-==[ User Menu Table ]==-\n");
     	printf("-=======================-\n");
-//    	printf("-==[ 1 - add user    ]==-\n");
     	printf("-==[ 2 - search user ]==-\n");
-//    	printf("-==[ 3 - Save to DB  ]==-\n");
     	printf("-==[ 4 - recover DB  ]==-\n");
-		printf("-==[ 5 - quit        ]==-\n");
+	printf("-==[ 5 - quit        ]==-\n");
     	printf("-=======================-\n");
     	printf("-==[ Option ]==-==[ ]==-\n");
     	move(20,10);
