@@ -6,6 +6,7 @@
 #define MIN			16
 #define null		NULL
 #define TRUE	    1
+#define FALSE 		0
 #define	USRFILE		"/usr/etc/macgyver/userfile.dat"
 #define CNTFILE		"/usr/etc/macgyver/cntfile.dat"
 #define LOGFILE		"/usr/etc/macgyver/logfile.txt"
@@ -74,12 +75,12 @@ void registerToList(sFila * f){
 }
 
 // procurando elemento da lista ::
-void search(sFila * f, int id){
+void search(sFila * f, char * id){
     pUser * temp = f->begin;
     int found = 0;
     
     while(temp != NULL){
-        if(temp->id == id){
+        if(!(strcmp(temp->name, id))){
             printf("\n\t-==[!!] FOUND [!!]==-\n");
             printf("\n\t-==[Username: %s ]==-", temp->name);
             printf("\n\t-==[Passwd: %s ]==-\n", temp->passwd);
@@ -89,6 +90,27 @@ void search(sFila * f, int id){
     }
     if(found  == 0){
         printf("\n\t-==[ User doestn't registered yet ]==-\n");
+    }
+}
+
+int loginVerify(sFila * f, char * id, char * passwd){
+    pUser * temp = f->begin;
+    int found = 0;
+    
+    while(temp != NULL){
+        if(!(strcmp(temp->name, id))){
+			if(!(strcmp(temp->passwd, passwd))){
+	            printf("\n\t-==[!!] FOUND [!!]==-\n");
+	            printf("\n\t-==[Username: %s ]==-", temp->name);
+				return TRUE;
+			}
+            found = 1;
+        }
+        temp = temp->prox;
+    }
+    if(found  == 0){
+        fprintf(stderr, "\n\t-==[ User doestn't registered ]==-\n");
+		return FALSE;
     }
 }
 
@@ -163,16 +185,13 @@ void recover(sFila * f, FILE * fd){
     while(f->cont <= cont){
         pUser * temp = (pUser *) calloc(1, sizeof(pUser));
         if(fread(temp, sizeof(pUser), 1, fd)){
-            printf("\nteste\n");
             enfileirar(f, temp);
         }else{
             fatal("reading the file 1");
         }
     }
-    printf("\n\nCompleted\n\n");
     fclose(fd);
     fflush(fd);
-    wait();
 }
 
 // FREE na lista ::
@@ -191,19 +210,25 @@ void listFree(sFila* f) {
 }
 
 // imprime o menu :: 
-void menu(sFila * f){
+int menu(sFila * f, int op, char * user, char * passwd){
     FILE * fd;
     int option;
-    int id;
+    char id[MAX];
     unsigned short int whiler = 0;
+	
+	if(op == 1){
+		recover(f, fd);
+		return loginVerify(f, user, passwd);
+	}
+
     while(whiler == 0){
 	    clear();
     	printf("-=======================-\n");
     	printf("-==[ User Menu Table ]==-\n");
     	printf("-=======================-\n");
-    	printf("-==[ 1 - add user    ]==-\n");
+//    	printf("-==[ 1 - add user    ]==-\n");
     	printf("-==[ 2 - search user ]==-\n");
-    	printf("-==[ 3 - Save to DB  ]==-\n");
+//    	printf("-==[ 3 - Save to DB  ]==-\n");
     	printf("-==[ 4 - recover DB  ]==-\n");
 		printf("-==[ 5 - quit        ]==-\n");
     	printf("-=======================-\n");
@@ -216,10 +241,12 @@ void menu(sFila * f){
                 break;
             }case 2:{
                 printf("\n");
-                printf("\t-==[Type the id]==-\n");
-                printf("\t-==[ID: ]==-\n");
+                printf("\t-==[Type the ID name]==-\n");
+                printf("\t-==[ID:             ]==-\n");
                 move(16, 13);
-                scanf("%d", &id);
+				dump_line(stdin);
+                fgets(id, sizeof(id), stdin);
+				str_format(id);
                 search(f, id);
                 wait();
                 break;

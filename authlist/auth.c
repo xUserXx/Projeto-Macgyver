@@ -1,7 +1,3 @@
-//****************************
-// File: auth.c :: By UserX ::
-//****************************
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -10,12 +6,13 @@
 #include "../headers/dump_io.h"
 #include "../headers/exceptions.h"
 
-#define file    FILE
-#define MAX     64
-#define null    NULL
-#define TRUE    1
-#define END     "/home/userx/Documents/programming/C/prototypes/lista/users"
-#define ENDC    "/home/userx/Documents/programming/C/prototypes/lista/contusers"
+#define file FILE
+#define MAX 64
+#define null NULL
+#define TRUE 1
+#define	END		"/usr/etc/macgyver/userfile.dat"
+#define ENDC		"/usr/etc/macgyver/cntfile.dat"
+#define LOGFILE		"/usr/etc/macgyver/logfile.txt"
 
 typedef struct userFile pUser;
 struct userFile {
@@ -90,7 +87,7 @@ void search(sFila * f, int id){
         }
         temp = temp->prox;
     }
-    if(found  == 0){
+    if(found == 0){
         printf("\n\t-==[ User doestn't registered yet ]==-\n");
     }
 }
@@ -108,7 +105,7 @@ void escritor(sFila * f, FILE * fd){
     temp = temp->prox;
   }
   cont = ant->id;
-  if(fwrite(&cont, sizeof(int), 1, fd)!= 1){
+  if(fwrite(&cont, sizeof(ant), 1, fd)!= 1){
     fatal("writing on the cont file");
   }
   fclose(fd);
@@ -196,11 +193,11 @@ int menu(){
     printf("-=======================-\n");
     printf("-==[ User Menu Table ]==-\n");
     printf("-=======================-\n");
-    printf("-==[ 1 - add user    ]==-\n");
+    printf("-==[ 1 - add user ]==-\n");
     printf("-==[ 2 - search user ]==-\n");
-    printf("-==[ 3 - Save to DB  ]==-\n");
-    printf("-==[ 4 - recover DB  ]==-\n");
-    printf("-==[ 5 - quit        ]==-\n");
+    printf("-==[ 3 - Save to DB ]==-\n");
+    printf("-==[ 4 - recover DB ]==-\n");
+    printf("-==[ 5 - quit ]==-\n");
     printf("-=======================-\n");
     printf("-==[ Option ]==-==[ ]==-\n");
     move(20,10);
@@ -249,9 +246,6 @@ int main(){
     listFree(&f);
     return 0;
 }
-
-
-
 
 
 

@@ -2,9 +2,11 @@
 //      exceptions.h :: By UserX ::
 //*********************************
 
-#include <string.h>
 #ifndef EXCEPTIONS_H
 #define EXCEPTIONS_H
+
+#include <string.h>
+#include "color_rset.h"
 
 // Uma função para exibir msg de erro e então sair.
 void fatal(char *message) {
@@ -52,6 +54,21 @@ void dump(const unsigned char *data_buffer, const unsigned int length){
       printf("\n");
     }
   }
+}
+
+int verify(int * argc, char ** argv){
+	int port;
+	if(* argc != 2){
+		fprintf(stderr, "\n[%s-%s] Usage: %s <port>\n\n", T_RED, NOTHING, argv[0]);
+		exit(-1);
+	}
+	port = atoi(argv[1]);
+	if(port > 65535 || port < 1024 || port <= 0){
+		fprintf(stderr, "\n[%s-%s] Usage: %s <port>\n", T_RED, NOTHING, argv[0]);
+		fprintf(stderr,"[%s-%s] Port Number most to be below then 65535 and higher then 1024 [ %sWARNING!!!%s ]\n", T_RED, NOTHING, T_RED, NOTHING);
+		exit(-1);
+	}
+	return port;
 }
 
 #endif
