@@ -210,10 +210,8 @@ void listFree(sFila* f) {
 }
 
 // imprime o menu :: 
-int login(sFila * f, int op, char * user, char * passwd){
+int login(sFila * f, char * user, char * passwd){
     FILE * fd;
-    unsigned short int whiler = 0;
-
 	recover(f, fd);
 	return loginVerify(f, user, passwd);
 }
