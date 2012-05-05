@@ -5,14 +5,15 @@
 #include "../headers/shell_fnct.h"
 #include "../headers/dump_io.h"
 #include "../headers/exceptions.h"
+#include "../headers/color_rset.h"
 
-#define file FILE
-#define MAX 64
-#define null NULL
-#define TRUE 1
-#define	END		"/usr/etc/macgyver/userfile.dat"
-#define ENDC		"/usr/etc/macgyver/cntfile.dat"
-#define LOGFILE		"/usr/etc/macgyver/logfile.txt"
+#define file 		FILE
+#define MAX 		64
+#define null 		NULL
+#define TRUE 		1
+#define	END			"/usr/local/etc/macgyver/userfile.dat"
+#define ENDC		"/usr/local/etc/macgyver/cntfile.dat"
+#define LOGFILE		"/usr/local/etc/macgyver/logfile.txt"
 
 typedef struct userFile pUser;
 struct userFile {
@@ -29,6 +30,12 @@ typedef struct pFila {
     pUser * end;
     int cont;
 } sFila;
+
+void FileTester(FILE * fd){
+	if(!(fd = fopen(ENDC, "r"))){
+		system("mkdir /usr/local/etc/macgyver/");
+	}
+}	
 
 void startList(sFila * f){
     f->begin = NULL;
@@ -97,6 +104,7 @@ void escritor(sFila * f, FILE * fd){
   pUser * ant;
   temp = f->begin;
   int cont;
+  FileTester(fd);
   if(!(fd = fopen(ENDC, "w+"))){
     fatal("opening the cont file");
   }
@@ -193,11 +201,11 @@ int menu(){
     printf("-=======================-\n");
     printf("-==[ User Menu Table ]==-\n");
     printf("-=======================-\n");
-    printf("-==[ 1 - add user ]==-\n");
+    printf("-==[ 1 - add user    ]==-\n");
     printf("-==[ 2 - search user ]==-\n");
-    printf("-==[ 3 - Save to DB ]==-\n");
-    printf("-==[ 4 - recover DB ]==-\n");
-    printf("-==[ 5 - quit ]==-\n");
+    printf("-==[ 3 - Save to DB  ]==-\n");
+    printf("-==[ 4 - recover DB  ]==-\n");
+    printf("-==[ 5 - quit        ]==-\n");
     printf("-=======================-\n");
     printf("-==[ Option ]==-==[ ]==-\n");
     move(20,10);
@@ -215,7 +223,7 @@ int main(){
     int cont = 0;
     
     unsigned short int whiler = 0;
-    system("mkdir /usr/local/etc/macgyver/");
+
     startList(&f);
     while(whiler == 0){
         option = menu();

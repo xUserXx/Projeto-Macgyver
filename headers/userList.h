@@ -7,9 +7,9 @@
 #define null		NULL
 #define TRUE	    1
 #define FALSE 		0
-#define	USRFILE		"/usr/etc/macgyver/userfile.dat"
-#define CNTFILE		"/usr/etc/macgyver/cntfile.dat"
-#define LOGFILE		"/usr/etc/macgyver/logfile.txt"
+#define	USRFILE		"/usr/local/etc/macgyver/userfile.dat"
+#define CNTFILE		"/usr/local/etc/macgyver/cntfile.dat"
+#define LOGFILE		"/usr/local/etc/macgyver/logfile.txt"
 
 
 typedef struct userFile pUser;
