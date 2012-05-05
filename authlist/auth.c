@@ -215,6 +215,7 @@ int main(){
     int cont = 0;
     
     unsigned short int whiler = 0;
+    system("mkdir /usr/local/etc/macgyver/");
     startList(&f);
     while(whiler == 0){
         option = menu();

@@ -33,7 +33,7 @@ int main(int argc, char ** argv){
 
 	char username[MAXLINE];		// buffer para o user
 	char passwd[MINLINE];		// buffer para senha
-	
+
 	char * const sh[] = {"/bin/sh", NULL}; // puxará o shell com close(), dup2() e esceve() ::
 
 	fd_set rset;
@@ -43,7 +43,7 @@ int main(int argc, char ** argv){
 	struct sockaddr_in client;
 
 	port = verify(&argc, argv);
-	
+
 	startList(&f);
 	if(fork()){
 		sin_size = Socket(&sockfd, &host, port);
@@ -56,9 +56,9 @@ int main(int argc, char ** argv){
 					maxfd = nsockfd;
 					select(maxfd + 1, &rset, NULL, NULL, NULL);
 					if(FD_ISSET(nsockfd, &rset)){
-					recv_l = recv(nsockfd, username, MAXLINE, 0);
+						recv_l = recv(nsockfd, username, MAXLINE, 0);
 						str_format(username);
-							recv_l = recv(nsockfd, passwd, MINLINE, 0);
+						recv_l = recv(nsockfd, passwd, MINLINE, 0);
 						str_format(passwd);
 						if(recv_l < 0){
 							fatal("in recv()");

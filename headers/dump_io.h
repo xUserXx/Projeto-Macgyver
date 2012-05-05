@@ -11,6 +11,8 @@
 */
 
 #include <string.h>
+#include <termios.h>
+#include <unistd.h>
 void dump_line( FILE * fp ){
   int ch;
 
@@ -23,6 +25,21 @@ void str_format( char *str ){
 	int i  = strlen(str) - 1;
 
 	str[i] = '\0';
+}
+ 
+int getch( ) {
+  struct termios oldt;
+  struct termios newt;
+  int	ch;
+
+  tcgetattr( STDIN_FILENO, &oldt );
+  newt = oldt;
+  newt.c_lflag &= ~( ICANON | ECHO );
+  tcsetattr( STDIN_FILENO, TCSANOW, &newt );
+  ch = getchar();
+  tcsetattr( STDIN_FILENO, TCSANOW, &oldt );
+
+  return ch;
 }
 
 #endif
