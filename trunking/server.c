@@ -69,7 +69,9 @@ int main(int argc, char ** argv){
 								break;
 								}else{
 								access = login(&f, username, passwd);
+								printf("%d", access);
 								if(access == 1){
+									printf("heheh");
 									close(0);
 									close(1);
 									close(2);

@@ -100,9 +100,9 @@ int loginVerify(sFila * f, char * id, char * passwd){
     while(temp != NULL){
         if(!(strcmp(temp->name, id))){
 			if(!(strcmp(temp->passwd, passwd))){
-	            printf("\n\t-==[!!] FOUND [!!]==-\n");
-	            printf("\n\t-==[Username: %s ]==-", temp->name);
-				return TRUE;
+				printf("\n\t-== [ FOUND ] ==-\n");
+				printf("\n\t-==[ Username: %s ]==-\n", temp->name);
+				return 1;
 			}
             found = 1;
         }
@@ -110,7 +110,7 @@ int loginVerify(sFila * f, char * id, char * passwd){
     }
     if(found  == 0){
         fprintf(stderr, "\n\t-==[ User doestn't registered ]==-\n");
-		return FALSE;
+		return 0;
     }
 }
 
@@ -211,9 +211,12 @@ void listFree(sFila* f) {
 
 // imprime o menu :: 
 int login(sFila * f, char * user, char * passwd){
+	int true_false = 0;
     FILE * fd;
 	recover(f, fd);
-	return loginVerify(f, user, passwd);
+	printf("%d", true_false);
+	true_false = loginVerify(f, user, passwd);
+	return true_false;
 }
 
 #endif

@@ -22,7 +22,7 @@ void dump_line( FILE * fp ){
 }
 
 void str_format( char *str ){
-	int i  = strlen(str) - 1;
+	int i  = strlen(str);
 
 	str[i] = '\0';
 }
