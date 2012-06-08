@@ -59,3 +59,7 @@ final.
    Abração...
 
    By UserX A.K.A Victor Vigel Flores.
+/---------------------------------------------------------------------------/
+    A pasta Multiplex_server contem exemplos de servidor e client usando multiplex, a titulo de estudo para aqueles que decidirem ajudar mas n sabem usar multiplex.
+na pasta UnderConstruction esta o servidor em construção que será o
+oficial, substituindo o macgyver_server.c.
